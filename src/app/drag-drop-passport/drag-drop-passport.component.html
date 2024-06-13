@@ -1,0 +1,23 @@
+<div
+  class="w-full mx-auto max-w-screen-xl flex items-center justify-center my-40"
+>
+  <div
+    class="border border-dashed w-96 h-72 flex items-center justify-center"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="onBrowseClick()"
+    [class.bg-slate-600]="isDragging"
+  >
+    Drag Drop Passport <br />
+    OR <br />
+    Click to Browse Passport
+  </div>
+  <input
+    type="file"
+    #fileInput
+    style="display: none"
+    (change)="onFileSelected($event)"
+    accept=".pdf,.jpg,.jpeg,.png"
+  />
+</div>
