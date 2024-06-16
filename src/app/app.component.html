@@ -4,11 +4,21 @@
     [firstPartTitle]="firstPartTitle"
     [secondPartTitle]="secondPartTitle"
   ></app-navbar>
-  <app-drag-drop-passport
-    [url]="uploadUrl"
-    (uploadResponse)="handleUploadResponse($event)"
-    (imageUrlChange)="handleImageUrlChange($event)"
-  ></app-drag-drop-passport>
+
+  <ng-container *ngIf="data == null || imageUrl === ''; else elseBlock">
+    <app-drag-drop-passport
+      [url]="uploadUrl"
+      (uploadResponse)="handleUploadResponse($event)"
+      (imageUrlChange)="handleImageUrlChange($event)"
+    ></app-drag-drop-passport>
+  </ng-container>
+
+  <ng-template #elseBlock>
+    <app-person-data-plotter
+      [data]="data"
+      [imageUrl]="imageUrl"
+    ></app-person-data-plotter>
+  </ng-template>
 </main>
 
 <router-outlet />

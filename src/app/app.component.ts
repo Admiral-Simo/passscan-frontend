@@ -3,20 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { DragDropPassportComponent } from './drag-drop-passport/drag-drop-passport.component';
-
-interface Person {
-  CNE: string;
-  FirstName: string;
-  LastName: string;
-  City: string;
-  BirthDate: Date;
-  ExpireDate: Date;
-}
-
-interface Data {
-  person: Person;
-  possible_names_address: string[];
-}
+import { Data } from '../types/PersonData';
+import { PersonDataPlotterComponent } from './person-data-plotter/person-data-plotter.component';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +13,7 @@ interface Data {
     RouterOutlet,
     NavbarComponent,
     DragDropPassportComponent,
+    PersonDataPlotterComponent,
     CommonModule,
   ],
   templateUrl: './app.component.html',
