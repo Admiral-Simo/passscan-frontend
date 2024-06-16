@@ -4,6 +4,20 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { DragDropPassportComponent } from './drag-drop-passport/drag-drop-passport.component';
 
+interface Person {
+  CNE: string;
+  FirstName: string;
+  LastName: string;
+  City: string;
+  BirthDate: Date;
+  ExpireDate: Date;
+}
+
+interface Data {
+  person: Person;
+  possible_names_address: string[];
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,13 +35,15 @@ export class AppComponent {
   secondPartTitle = 'scanner';
   uploadUrl = 'http://localhost:8080/get-passport-data';
 
-  handleUploadResponse(response: any) {
-    console.log('Upload response received:', response);
-    // Handle the response as needed
+  data: null | Data = null;
+  imageUrl: null | string = null;
+
+  handleUploadResponse(response: Data) {
+    this.data = response;
   }
 
   handleImageUrlChange(imageUrl: string | null) {
-    console.log('Image URL changed:', imageUrl);
+    this.imageUrl = imageUrl;
     // Handle the image URL as needed
   }
 }
