@@ -3,8 +3,8 @@ export interface Person {
   FirstName: string;
   LastName: string;
   City: string;
-  BirthDate: Date;
-  ExpireDate: Date;
+  BirthDate: string;
+  ExpireDate: string;
 }
 
 export interface Data {
