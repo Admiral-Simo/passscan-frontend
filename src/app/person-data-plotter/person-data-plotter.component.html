@@ -1,5 +1,48 @@
-<div>
-  {{ data | json }}
+<div class="max-w-screen-xl mx-auto p-4">
+  <div class="flex items-start flex-wrap gap-4">
+    <img
+      *ngIf="imageUrl"
+      [src]="imageUrl"
+      alt="Passport Image"
+      class="w-96 h-full object-cover rounded-lg shadow-md"
+    />
+    <div class="flex flex-col flex-1 space-y-4" *ngIf="data?.person">
+      <ng-container *ngFor="let entry of personEntries()">
+        <label
+          class="input input-bordered flex items-center gap-4 p-2 rounded-lg shadow-sm"
+        >
+          <span class="font-semibold text-white">{{ entry[0] }}</span>
+          <input
+            type="text"
+            [value]="entry[1]"
+            class="grow bg-white rounded-md p-2"
+            [placeholder]="'Enter ' + entry[0]"
+          />
+        </label>
+      </ng-container>
+    </div>
+  </div>
 
-  <img *ngIf="imageUrl" [src]="imageUrl" alt="Passport Image" class="w-32" />
+  <h1 class="text-xl font-bold mt-6">Possible Names:</h1>
+  <div class="flex flex-wrap gap-2 mt-2">
+    <button
+      class="btn btn-accent text-white py-2 px-4 rounded-lg shadow-md"
+      *ngFor="let name of data?.possible_names_address"
+      [class.btn-disabled]="checked.includes(name)"
+      (click)="addToCurrent(name)"
+    >
+      {{ name }}
+    </button>
+  </div>
+
+  <h1 class="text-xl font-bold mt-6">Chosen Names:</h1>
+  <div class="flex flex-wrap gap-2 mt-2">
+    <button
+      class="btn btn-primary bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md"
+      *ngFor="let name of checked"
+      (click)="removeFromCurrent(name)"
+    >
+      {{ name }}
+    </button>
+  </div>
 </div>
