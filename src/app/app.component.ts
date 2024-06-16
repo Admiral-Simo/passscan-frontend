@@ -29,10 +29,15 @@ export class AppComponent {
 
   handleUploadResponse(response: Data) {
     this.data = response;
+    console.log(response);
   }
 
   handleImageUrlChange(imageUrl: string | null) {
     this.imageUrl = imageUrl;
     // Handle the image URL as needed
+  }
+
+  setDataToNull() {
+    this.data = null;
   }
 }
