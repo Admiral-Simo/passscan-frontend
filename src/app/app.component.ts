@@ -19,4 +19,15 @@ import { DragDropPassportComponent } from './drag-drop-passport/drag-drop-passpo
 export class AppComponent {
   firstPartTitle = 'passport';
   secondPartTitle = 'scanner';
+  uploadUrl = 'http://localhost:8080/get-passport-data';
+
+  handleUploadResponse(response: any) {
+    console.log('Upload response received:', response);
+    // Handle the response as needed
+  }
+
+  handleImageUrlChange(imageUrl: string | null) {
+    console.log('Image URL changed:', imageUrl);
+    // Handle the image URL as needed
+  }
 }

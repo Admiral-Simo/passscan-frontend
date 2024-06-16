@@ -1,18 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'app-drag-drop-passport',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './drag-drop-passport.component.html',
   styleUrls: ['./drag-drop-passport.component.css'],
 })
 export class DragDropPassportComponent {
+  @Input() url!: string;
+  @Output() uploadResponse = new EventEmitter<any>();
+  @Output() imageUrlChange = new EventEmitter<string | null>();
   isDragging = false;
   imageUrl: string | null = null;
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+
+  constructor(private http: HttpClient) {}
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
@@ -49,7 +62,23 @@ export class DragDropPassportComponent {
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.imageUrl = e.target.result;
+      this.imageUrlChange.emit(this.imageUrl);
+      this.uploadFile(file);
     };
     reader.readAsDataURL(file);
+  }
+
+  uploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+
+    this.http.post(this.url, formData).subscribe(
+      (response) => {
+        this.uploadResponse.emit(response);
+      },
+      (error) => {
+        console.log('Fail to uploaded file', error);
+      },
+    );
   }
 }
