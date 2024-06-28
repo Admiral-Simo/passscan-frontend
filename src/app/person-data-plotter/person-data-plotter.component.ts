@@ -14,30 +14,6 @@ export class PersonDataPlotterComponent {
   @Input() imageUrl!: string | null;
 
   personEntries(): [string, string][] {
-    return Object.entries(this.data?.person || {});
-  }
-
-  checked: string[] = [];
-
-  addToCurrent(input: string) {
-    if (this.checked.length < 3) {
-      this.checked.push(input);
-      this.updatePerson();
-    }
-  }
-
-  removeFromCurrent(input: string) {
-    this.checked = this.checked.filter((s: string) => s !== input);
-    this.updatePerson();
-  }
-
-  updatePerson() {
-    if (this.data && this.data.person) {
-      const person = this.data.person;
-
-      person.FirstName = this.checked[0] || '';
-      person.LastName = this.checked[1] || '';
-      person.City = this.checked[2] || '';
-    }
+    return Object.entries(this.data || {});
   }
 }
