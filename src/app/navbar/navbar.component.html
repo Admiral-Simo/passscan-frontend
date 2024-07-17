@@ -1,8 +1,21 @@
-<nav class="bg-slate-900">
-  <a class="flex items-center mx-auto max-w-screen-xl cursor-pointer" href="/">
-    <img src="favicon.svg" alt="logo" class="h-14" />
-    <p class="capitalize font-semibold text-blue-400">
-      <span class="text-white">{{ firstPartTitle }}</span> {{ secondPartTitle }}
-    </p>
-  </a>
+<nav class="bg-slate-900 flex items-center justify-between">
+  <div class="container flex items-center justify-between mx-auto">
+    <a class="flex items-center max-w-screen-xl cursor-pointer" href="/">
+      <img src="favicon.svg" alt="logo" class="h-14" />
+      <p class="capitalize font-semibold text-blue-400">
+        <span class="text-white">{{ firstPartTitle }}</span>
+        {{ secondPartTitle }}
+      </p>
+    </a>
+    <div class="space-x-10">
+      <button
+        class="px-2 py-1 rounded-md"
+        *ngFor="let url of urls"
+        [class.bg-red-400]="used_url == url.endpoint"
+        (click)="setUsedUrl(url.endpoint)"
+      >
+        {{ url.lang }} server
+      </button>
+    </div>
+  </div>
 </nav>

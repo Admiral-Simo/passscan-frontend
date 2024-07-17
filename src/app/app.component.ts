@@ -22,7 +22,15 @@ import { PersonDataPlotterComponent } from './person-data-plotter/person-data-pl
 export class AppComponent {
   firstPartTitle = 'passport';
   secondPartTitle = 'scanner';
-  uploadUrl = 'http://31.220.89.29:8091/get-document-data';
+
+  baseUrl = '';
+  uploadUrl = '';
+
+  onChangeUrl(url: string) {
+    this.baseUrl = url;
+    this.uploadUrl = this.baseUrl + '/get-document-data';
+    console.log('this.uploadUrl', this.uploadUrl);
+  }
 
   data: null | Data = null;
   imageUrl: null | string = null;

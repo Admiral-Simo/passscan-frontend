@@ -3,6 +3,7 @@
   <app-navbar
     [firstPartTitle]="firstPartTitle"
     [secondPartTitle]="secondPartTitle"
+    (urlChanged)="onChangeUrl($event)"
   ></app-navbar>
 
   <ng-container *ngIf="data == null || imageUrl === ''; else elseBlock">
