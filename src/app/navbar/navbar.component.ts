@@ -14,11 +14,11 @@ export class NavbarComponent implements OnInit {
   @Output() urlChanged = new EventEmitter<string>();
 
   urls = [
-    { lang: 'golang', endpoint: '31.220.89.29:8091' },
-    { lang: 'python', endpoint: '31.220.89.29:8092' },
+    { lang: 'golang', endpoint: 'http://31.220.89.29:8091' },
+    { lang: 'python', endpoint: 'http://31.220.89.29:8092' },
   ];
 
-  used_url = '31.220.89.29:8091';
+  used_url = 'http://31.220.89.29:8091';
 
   ngOnInit(): void {
     this.urlChanged.emit(this.used_url);
