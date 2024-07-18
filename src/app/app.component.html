@@ -1,33 +1,50 @@
-<main class="bg-slate-800 min-h-screen text-white">
-  <!-- navbar -->
+<main class="bg-slate-900 min-h-screen text-white">
+  <!-- Navbar component -->
   <app-navbar
     [firstPartTitle]="firstPartTitle"
     [secondPartTitle]="secondPartTitle"
     (urlChanged)="onChangeUrl($event)"
   ></app-navbar>
 
-  <ng-container *ngIf="data == null || imageUrl === ''; else elseBlock">
-    <app-drag-drop-passport
-      [url]="uploadUrl"
-      (uploadResponse)="handleUploadResponse($event)"
-      (imageUrlChange)="handleImageUrlChange($event)"
-    ></app-drag-drop-passport>
-  </ng-container>
+  <!-- Main content container -->
+  <div class="container mx-auto px-4 py-8">
+    <ng-container *ngIf="data == null">
+      <h1 class="text-4xl font-bold text-center mb-4">
+        Passport Data Extractor
+      </h1>
+      <p class="text-lg text-center mb-8">
+        Upload your passport image to extract and view detailed information. The
+        process is simple and secure.
+      </p>
+    </ng-container>
 
-  <ng-template #elseBlock>
-    <div class="max-w-screen-xl mx-auto mt-10">
-      <button
-        class="btn btn-primary capitalize mx-3 text-white"
-        (click)="setDataToNull()"
-      >
-        go back
-      </button>
-    </div>
-    <app-person-data-plotter
-      [data]="data"
-      [imageUrl]="imageUrl"
-    ></app-person-data-plotter>
-  </ng-template>
+    <!-- Conditional rendering based on data and imageUrl -->
+    <ng-container *ngIf="data == null || imageUrl === ''; else elseBlock">
+      <!-- Drag and drop passport upload component -->
+      <app-drag-drop-passport
+        [url]="uploadUrl"
+        (uploadResponse)="handleUploadResponse($event)"
+        (imageUrlChange)="handleImageUrlChange($event)"
+      ></app-drag-drop-passport>
+    </ng-container>
+
+    <!-- Content to display when data and imageUrl are available -->
+    <ng-template #elseBlock>
+      <div class="w-full">
+        <button
+          class="self-start btn btn-primary capitalize mx-3 text-white"
+          (click)="setDataToNull()"
+        >
+          Go Back
+        </button>
+      </div>
+      <app-person-data-plotter
+        [data]="data"
+        [imageUrl]="imageUrl"
+        class="mt-8"
+      ></app-person-data-plotter>
+    </ng-template>
+  </div>
 </main>
 
 <router-outlet />
