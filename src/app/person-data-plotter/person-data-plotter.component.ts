@@ -32,7 +32,7 @@ export class PersonDataPlotterComponent {
     window.URL.revokeObjectURL(url);
   }
 
-  copyJSON(): void {
+  copyToClipboard(): void {
     const text = JSON.stringify(this.data, null, 2);
     navigator.clipboard
       .writeText(text)
