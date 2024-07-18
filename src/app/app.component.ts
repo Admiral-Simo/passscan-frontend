@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { DragDropPassportComponent } from './drag-drop-passport/drag-drop-passport.component';
 import { Data } from '../types/PersonData';
 import { PersonDataPlotterComponent } from './person-data-plotter/person-data-plotter.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { PersonDataPlotterComponent } from './person-data-plotter/person-data-pl
     NavbarComponent,
     DragDropPassportComponent,
     PersonDataPlotterComponent,
+    FooterComponent,
     CommonModule,
   ],
   templateUrl: './app.component.html',
