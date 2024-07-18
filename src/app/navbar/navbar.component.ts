@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   urls = [
     { lang: 'golang', endpoint: 'http://31.220.89.29:8091' },
-    { lang: 'python', endpoint: 'http://31.220.89.29:8092' },
+    { lang: 'python', endpoint: 'http://31.220.89.29:8000' },
   ];
 
   used_url = 'http://31.220.89.29:8091';
