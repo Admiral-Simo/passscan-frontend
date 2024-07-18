@@ -1,17 +1,21 @@
-<nav class="bg-slate-900 flex items-center justify-between">
-  <div class="container flex items-center justify-between mx-auto">
-    <a class="flex items-center max-w-screen-xl cursor-pointer" href="/">
-      <img src="favicon.svg" alt="logo" class="h-14" />
-      <p class="capitalize font-semibold text-blue-400">
+<nav class="bg-slate-900 flex items-center justify-between py-4 shadow-md">
+  <div class="container flex items-center justify-between mx-auto px-4">
+    <a class="flex items-center cursor-pointer" href="/">
+      <img src="favicon.svg" alt="logo" class="h-14 mr-3" />
+      <p class="capitalize font-semibold text-blue-400 text-lg">
         <span class="text-white">{{ firstPartTitle }}</span>
         {{ secondPartTitle }}
       </p>
     </a>
-    <div class="space-x-10">
+    <div class="flex space-x-6">
       <button
-        class="px-2 py-1 rounded-md"
+        class="px-3 py-2 rounded-md transition-colors duration-300"
         *ngFor="let url of urls"
-        [class.bg-red-400]="used_url == url.endpoint"
+        [ngClass]="{
+          'bg-red-400 text-white': used_url == url.endpoint,
+          'bg-slate-700 text-gray-300 hover:bg-slate-600':
+            used_url != url.endpoint
+        }"
         (click)="setUsedUrl(url.endpoint)"
       >
         {{ url.lang }} server
