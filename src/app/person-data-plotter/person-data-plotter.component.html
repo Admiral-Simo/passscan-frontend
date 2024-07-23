@@ -1,4 +1,6 @@
-<div class="max-w-screen-xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg">
+<div
+  class="max-w-screen-xl mx-auto p-6 bg-gray-900 dark:bg-white rounded-lg shadow-lg"
+>
   <div class="flex items-start flex-wrap gap-6">
     <!-- Passport Image Display -->
     <img
@@ -12,13 +14,15 @@
     <div class="flex flex-col flex-1 space-y-6" *ngIf="data">
       <ng-container *ngFor="let entry of personEntries()">
         <label
-          class="flex items-center gap-4 p-3 bg-gray-800 rounded-lg shadow-md"
+          class="flex items-center gap-4 p-3 bg-gray-800 dark:bg-gray-200 rounded-lg shadow-md"
         >
-          <span class="font-semibold text-blue-300 w-1/4">{{ entry[0] }}</span>
+          <span class="font-semibold text-blue-300 dark:text-blue-700 w-1/4">{{
+            entry[0]
+          }}</span>
           <input
             type="text"
             [value]="entry[1]"
-            class="flex-grow text-white bg-gray-700 rounded-md p-2 border border-blue-500 focus:ring-2 focus:ring-blue-300 w-3/4"
+            class="flex-grow text-white dark:text-black bg-gray-700 dark:bg-gray-100 rounded-md p-2 border border-blue-500 focus:ring-2 focus:ring-blue-300 w-3/4"
             [placeholder]="'Enter ' + entry[0]"
           />
         </label>
@@ -27,21 +31,23 @@
   </div>
 
   <!-- JSON Data Display -->
-  <div class="w-full bg-gray-800 p-6 rounded-lg shadow-md mt-6">
-    <pre class="text-green-300">{{ jsonData() }}</pre>
+  <div
+    class="w-full bg-gray-800 dark:bg-gray-200 p-6 rounded-lg shadow-md mt-6"
+  >
+    <pre class="text-green-300 dark:text-green-800">{{ jsonData() }}</pre>
   </div>
 
   <!-- Action Buttons -->
   <div class="flex items-center justify-between w-full mt-4">
     <button
       (click)="downloadJSON()"
-      class="rounded-md py-2 px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300 shadow-md"
+      class="rounded-md py-2 px-4 bg-blue-600 dark:bg-blue-400 text-white dark:text-black hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors duration-300 shadow-md"
     >
       Download JSON
     </button>
     <button
       (click)="copyToClipboard()"
-      class="rounded-md py-2 px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300 shadow-md"
+      class="rounded-md py-2 px-4 bg-blue-600 dark:bg-blue-400 text-white dark:text-black hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors duration-300 shadow-md"
     >
       Copy to Clipboard
     </button>

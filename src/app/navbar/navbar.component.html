@@ -1,9 +1,11 @@
-<nav class="bg-slate-900 flex items-center justify-between py-4 shadow-md">
+<nav
+  class="bg-slate-900 dark:bg-white flex items-center justify-between py-4 shadow-md"
+>
   <div class="container flex items-center justify-between mx-auto px-4">
     <a class="flex items-center cursor-pointer" href="/">
       <img src="favicon.svg" alt="logo" class="h-14 mr-3" />
       <p class="capitalize font-semibold text-blue-400 text-lg">
-        <span class="text-white">{{ firstPartTitle }}</span>
+        <span class="text-white dark:text-black">{{ firstPartTitle }}</span>
         {{ secondPartTitle }}
       </p>
     </a>
@@ -12,8 +14,8 @@
         class="px-3 py-2 rounded-md transition-colors duration-300"
         *ngFor="let url of urls"
         [ngClass]="{
-          'bg-red-400 text-white': used_url == url.endpoint,
-          'bg-slate-700 text-gray-300 hover:bg-slate-600':
+          'bg-red-400 text-white dark:text-black': used_url == url.endpoint,
+          'bg-slate-700 text-gray-300 dark:bg-gray-300 dark:text-gray-800 hover:bg-slate-600 dark:hover:bg-gray-400':
             used_url != url.endpoint
         }"
         (click)="setUsedUrl(url.endpoint)"
@@ -21,5 +23,11 @@
         {{ url.lang }} server
       </button>
     </div>
+    <input
+      type="checkbox"
+      class="toggle"
+      [checked]="isDarkMode"
+      (change)="toggleDarkMode()"
+    />
   </div>
 </nav>
