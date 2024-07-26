@@ -47,6 +47,33 @@
       ></app-person-data-plotter>
     </ng-template>
   </div>
+
+  <ng-container *ngIf="uploadHistoryData">
+    <div class="mb-10 container mx-auto">
+      <h1 class="text-4xl font-bold dark:text-black mb-2">- Image History</h1>
+      <div class="space-y-8">
+        <div
+          *ngFor="let key of getKeys(uploadHistoryData)"
+          class="border p-4 rounded shadow-md"
+        >
+          <h2 class="text-2xl font-semibold">{{ key }}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div
+              *ngFor="let item of uploadHistoryData[key]"
+              class="border p-2 rounded shadow-sm"
+            >
+              <img
+                [src]="'http://' + item"
+                alt="Uploaded Image"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
   <app-footer></app-footer>
 </main>
 
